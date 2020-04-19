@@ -20,7 +20,7 @@
 | Module 名称                                                  | Module 介绍                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [demo](./demo) | spring-boot 的一个demo初始化项目                                |
-| [spring-boot-demo-helloworld](./spring-boot-demo-helloworld) | spring-boot 的一个 helloworld                                |
+| [wjoinj-spring-mybatis](./wjoinj-spring-mybatis) | spring-boot 集成原生mybatis，使用 [mybatis-spring-boot-starter](https://github.com/mybatis/spring-boot-starter) 集成                               |
 | [spring-boot-demo-properties](./spring-boot-demo-properties) | spring-boot 读取配置文件中的内容                             |
 | [spring-boot-demo-actuator](./spring-boot-demo-actuator)     | spring-boot 集成 spring-boot-starter-actuator 用于监控 spring-boot 的启动和运行状态 |
 | [spring-boot-demo-admin-client](./spring-boot-demo-admin/spring-boot-demo-admin-client) | spring-boot 集成 spring-boot-admin 来可视化的监控 spring-boot 程序的运行状态，可以与 actuator 互相搭配使用，客户端示例 |

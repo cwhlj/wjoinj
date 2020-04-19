@@ -12,6 +12,7 @@
 
   <modules>
     <module>demo</module>
+    <module>wjoin-spring-mybatis</module>
   </modules>
 
   <properties>
