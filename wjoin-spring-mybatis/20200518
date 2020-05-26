@@ -1,0 +1,27 @@
+新一代基金理财系统
+使用技术	springboot，mybatis，dubbo，redis，kafka，maven，git，mysql
+项目功能	该系统是一个分布式系统，分为前置模块、TA产品层、份额中心、客户中心、账户中心等中心组成，每天销售商上送文件数据，经前置转换后，
+        调用rpc接口存入数据，各中心收到数据后，经分布式批量框架将各业务调起，业务处理完成后，将数据在导出到各个文件系统，上送给其他系统
+
+责任描述	TA产品层理财业务的开发，份额中心申购、赎回、收益分配业务的处理；分布式批量根据场次号缓存的处理；组件化的开发和讲解。
+        在处理收益分配业务时，由于数据量极大，使用了mybatis的流式查询和多线程结合的处理方式，避免了内存溢出；
+        使用了guava的缓存，缓存了产品和销售商的数据，避免多次调用rpc接口，造成服务中断
+
+心得体会	该系统的开发，学会使用了mybatis的流式处理；学会使用guava的缓存，在使用缓存过程中，同一批数据会缓存多个，这里使用了工厂模式；
+        在各中心调用rpc接口过程中，由于缓存是根据场次号来的，一次rpc调用会将rpc.context清空，故采用了ThreadLocal来存放场次号
+
+
+SpringBoot
+1.@SpringBootApplication
+    @SpringBootConfiguration   声明当前类是一个配置类
+    @EnableAutoConfiguration  开启自动配置，告诉SpringBoot基于所添加的依赖，去“猜测”你想要如何配置Spring  不需要自动装配可以使用exclude
+    @ComponentScan  如果没有指定这些属性，那么将从声明这个注解的类所在的包开始，扫描包及子包
+
+2.springBoot“开机启动”某些方法的方式
+    实现 ApplicationRunner 和 CommandLineRunner 接口来实现
+    CommandLineRunner接口可以用来接收字符串数组的命令行参数，ApplicationRunner 是使用ApplicationArguments 用来接收参数的。
+         这两种方式的实现都很简单，直接实现了相应的接口就可以了。记得在类上加@Component注解。
+         如果想要指定启动方法执行的顺序，可以通过实现org.springframework.core.Ordered接口或者使用org.springframework.core.annotation.Order注解来实现
+
+    启动main方法的传入参数：
+    https://www.hangge.com/blog/cache/detail_2508.html

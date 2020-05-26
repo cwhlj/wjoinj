@@ -4,6 +4,7 @@ import com.wjoinj.mybatis.entity.Student;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.ResultHandler;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -69,4 +70,11 @@ public interface StudentDao {
      * @param resultHandler
      */
     void queryAllHandle(ResultHandler<Student> resultHandler);
+
+    /**
+     * queryByCreateTime
+     * @param createTime
+     * @return
+     */
+    List<Student> queryByCreateTime(Date createTime);
 }

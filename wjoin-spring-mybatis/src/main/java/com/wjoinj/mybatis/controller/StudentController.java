@@ -1,6 +1,7 @@
 package com.wjoinj.mybatis.controller;
 
 
+import com.wjoinj.mybatis.cache.StudentCache;
 import com.wjoinj.mybatis.entity.Student;
 import com.wjoinj.mybatis.service.StudentService;
 import com.wjoinj.mybatis.service.handler.AbstractResultHandler;
@@ -11,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 
 /**
@@ -30,6 +34,8 @@ public class StudentController {
     private StudentService studentService;
     @Resource
     private StudentHandler studentHandler;
+    @Autowired
+    private StudentCache studentCache;
 
 
     /**
@@ -39,8 +45,10 @@ public class StudentController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public Student selectOne(Long id) {
-        return this.studentService.queryById(id);
+    public Student selectOne(Long id) throws Exception {
+        Student student = studentCache.queryById(id);
+        return student;
+//        return this.studentService.queryById(id);
     }
     @Autowired
     private ExecutorService executorService;
@@ -73,4 +81,23 @@ public class StudentController {
 
     }
 
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param
+     * @return 单条数据
+     */
+    @GetMapping("queryByCreateTime")
+    public List<Student> selectOne() throws Exception {
+        return studentCache.queryByCreateTime(new Date());
+    }
+
+
+    public static void main(String[] args) {
+        List<String> s=new ArrayList<>();
+        s.add("2");
+        s.set(0,"1");
+        System.out.println(s);
+    }
 }

@@ -1,6 +1,9 @@
 package com.wjoinj.mybatis.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 学生表(Student)实体类
@@ -11,21 +14,24 @@ import java.io.Serializable;
 public class Student implements Serializable {
     private static final long serialVersionUID = -34290959004174776L;
     /**
-    * 主键
-    */
+     * 主键
+     */
     private Long id;
     /**
-    * 姓名
-    */
+     * 姓名
+     */
     private String name;
     /**
-    * 学号
-    */
+     * 学号
+     */
     private String num;
     /**
-    * 年龄
-    */
+     * 年龄
+     */
     private Integer age;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    private Date createTime;
 
 
     public Long getId() {
@@ -60,4 +66,11 @@ public class Student implements Serializable {
         this.age = age;
     }
 
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

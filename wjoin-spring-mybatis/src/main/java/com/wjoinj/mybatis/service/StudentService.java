@@ -3,6 +3,7 @@ package com.wjoinj.mybatis.service;
 import com.wjoinj.mybatis.entity.Student;
 import org.apache.ibatis.session.ResultHandler;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public interface StudentService {
      * 查询多条数据
      *
      * @param offset 查询起始位置
-     * @param limit 查询条数
+     * @param limit  查询条数
      * @return 对象列表
      */
     List<Student> queryAllByLimit(int offset, int limit);
@@ -54,5 +55,18 @@ public interface StudentService {
      */
     boolean deleteById(Long id);
 
+    /**
+     * queryAllHandle
+     *
+     * @param resultHandler
+     */
     void queryAllHandle(ResultHandler<Student> resultHandler);
+
+    /**
+     * queryByCreateTime
+     *
+     * @param createTime
+     * @return
+     */
+    List<Student> queryByCreateTime(Date createTime);
 }

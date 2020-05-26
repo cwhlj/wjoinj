@@ -7,12 +7,13 @@
         <result property="name" column="name" jdbcType="VARCHAR"/>
         <result property="num" column="num" jdbcType="VARCHAR"/>
         <result property="age" column="age" jdbcType="INTEGER"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="StudentMap">
         select
-          id, name, num, age
+          id, name, num, age,create_time
         from test.student
         where id = #{id}
     </select>
@@ -20,7 +21,7 @@
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="StudentMap">
         select
-          id, name, num, age
+          id, name, num, age, create_time
         from test.student
         limit #{offset}, #{limit}
     </select>
@@ -28,7 +29,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="StudentMap">
         select
-        id, name, num, age
+        id, name, num, age, create_time
         from test.student
         <where>
             <if test="id != null">
@@ -76,7 +77,15 @@
 
     <select id="queryAllHandle" fetchSize="1" resultMap="StudentMap" resultSetType="FORWARD_ONLY">
         select
-          id, name, num, age
+          id, name, num, age,create_time
         from test.student
+    </select>
+
+    <!--时间查询-->
+    <select id="queryByCreateTime" resultMap="StudentMap">
+        select
+          id, name, num, age,create_time
+        from test.student
+        where DATE_FORMAT(create_time,'%Y-%m-%d')=DATE_FORMAT(now(),'%Y-%m-%d')
     </select>
 </mapper>

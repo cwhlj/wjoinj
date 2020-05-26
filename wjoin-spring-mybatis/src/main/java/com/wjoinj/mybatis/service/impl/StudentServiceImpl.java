@@ -8,6 +8,7 @@ import org.apache.ibatis.session.ResultHandler;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -82,5 +83,10 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public void queryAllHandle(ResultHandler<Student> resultHandler){
         studentDao.queryAllHandle(resultHandler);
+    }
+
+    @Override
+    public List<Student> queryByCreateTime(Date createTime) {
+        return studentDao.queryByCreateTime(createTime);
     }
 }
