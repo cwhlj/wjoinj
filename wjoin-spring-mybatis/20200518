@@ -25,3 +25,19 @@ SpringBoot
 
     启动main方法的传入参数：
     https://www.hangge.com/blog/cache/detail_2508.html
+
+3.springboot定时任务
+    @EnableScheduling 开启定时任务
+    @Scheduled(cron = "0/1 * * * * ?") 定时任务时间间隔
+
+    一般都是单线程执行，可以配置多线程
+    @Configuration
+    public class TaskConfig {
+
+        @Bean(name = "TaskPool")
+        public TaskScheduler taskScheduler(){
+            ThreadPoolTaskScheduler taskScheduler = new ThreadPoolTaskScheduler();
+            taskScheduler.setPoolSize(3);
+            return taskScheduler;
+        }
+    }
