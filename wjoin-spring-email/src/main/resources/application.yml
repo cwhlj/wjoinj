@@ -1,0 +1,17 @@
+spring:
+  mail:
+    # 163
+    host: smtp.163.com
+    port:
+    username: 18268258367@163.com
+    # 不是邮箱密码，需要登录mail.163.com，前往设置 客户端授权密码中获取的一个16个字符的密码，同时允许POP3/SMTP服务
+    password: VOQGWBZYNBOAVZGE
+    protocol: smtp
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.socketFactory.port: 465
+      mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+      mail.smtp.socketFactory.fallback: false
